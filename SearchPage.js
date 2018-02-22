@@ -55,7 +55,7 @@ const SearchPage = createReactClass({
       .then(response => response.json())
       .then(json => this._handleResponse(json.response))
       .catch(error =>
-         this.setState({
+        this.setState({
           isLoading: false,
           message: 'Something bad happened ' + error
         })
@@ -98,7 +98,7 @@ const SearchPage = createReactClass({
             onChange={self._onSearchTextChanged}
             placeholder='Search via name or postcode'/>
           <Button
-            onPress={this._onSearchPressed}
+            onPress={self._onSearchPressed}
             color='#48BBEC'
             title='Go'
           />

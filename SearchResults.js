@@ -15,7 +15,7 @@ const createReactClass = require('create-react-class');
 
 const ListItem = createReactClass({
   _onPress: function() {
-    this.props.onPressItem(this.props.index);
+    this.props.onPressItem(this.props.index, this.props.item);
   },
 
   render: function() {
@@ -61,8 +61,11 @@ const SearchResults = createReactClass({
     )
   },
 
-  _onPressItem: function(index) {
+  _onPressItem: function(index, item) {
     console.log("Pressed row: "+index);
+    this.props.navigation.navigate(
+      'Property', {item: item}
+    );
   },
 
   render: function() {

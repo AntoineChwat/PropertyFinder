@@ -21,6 +21,7 @@
 
  const SearchPage = require('./SearchPage');
  const SearchResults = require('./SearchResults')
+ const PropertyDetails = require ('./PropertyDetails')
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' +
@@ -34,6 +35,7 @@ type Props = {};
 const App = StackNavigator({
   Home: { screen: SearchPage },
   Results: { screen: SearchResults },
+  Property: {screen: PropertyDetails},
 });
 
 const styles = StyleSheet.create({
