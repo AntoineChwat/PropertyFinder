@@ -11,6 +11,8 @@ const View = ReactNative.View;
 const Button = ReactNative.Button;
 const ActivityIndicator = ReactNative.ActivityIndicator;
 const Image = ReactNative.Image;
+const Keyboard = ReactNative.Keyboard;
+const ScrollView = ReactNative.ScrollView;
 
 const createReactClass = require('create-react-class');
 
@@ -63,6 +65,7 @@ const SearchPage = createReactClass({
   },
 
   _onSearchPressed: function() {
+    Keyboard.dismiss()
     const query = urlForQueryAndPage('place_name', this.state.searchString, 1);
     this._executeQuery(query);
   },
@@ -83,7 +86,7 @@ const SearchPage = createReactClass({
     const spinner = this.state.isLoading ?
       <ActivityIndicator size='large'/> : null;
     return (
-      <View style={styles.container}>
+      <ScrollView scrollEnabled={false} contentContainerStyle={styles.container}>
         <Text style={styles.description}>
           Search for houses to buy!
         </Text>
@@ -96,7 +99,10 @@ const SearchPage = createReactClass({
             style={styles.searchInput}
             value={self.state.searchString}
             onChange={self._onSearchTextChanged}
-            placeholder='Search via name or postcode'/>
+            onSubmitEditing={self._onSearchPressed}
+            placeholder='Search via name or postcode'
+            returnKeyType="search"
+          />
           <Button
             onPress={self._onSearchPressed}
             disabled={self.state.isLoading}
@@ -109,7 +115,7 @@ const SearchPage = createReactClass({
         <Text style={styles.description}>
           {this.state.message}
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 });
