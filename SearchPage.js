@@ -99,6 +99,7 @@ const SearchPage = createReactClass({
             placeholder='Search via name or postcode'/>
           <Button
             onPress={self._onSearchPressed}
+            disabled={self.state.isLoading}
             color='#48BBEC'
             title='Go'
           />
