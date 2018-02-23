@@ -8,7 +8,8 @@ import { linkTo } from '@storybook/addon-links';
 import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
-import ListItem from './ListItem'
+import ListItem from './ListItem';
+import DisplayImage from './DisplayImage';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -25,5 +26,6 @@ storiesOf('Button', module)
     </Button>
   ));
 
-storiesOf('List', module)
-  .add('Item', () => <ListItem/>)
+storiesOf('List', module).add('Item', () => <ListItem/>);
+
+storiesOf('Detailed', module).add('Image', () => <DisplayImage/>);
