@@ -1,55 +1,42 @@
 const React = require('react');
-const Component = React.Component;
 
 const ReactNative = require('react-native');
-const StyleSheet = ReactNative.StyleSheet;
-const Image = ReactNative.Image;
-const View = ReactNative.View;
-const TouchableHighlight = ReactNative.TouchableHighlight;
-const Text = ReactNative.Text;
 
 const createReactClass = require('create-react-class');
 
 const ListItem = require('../../../Components').ListItem;
 
+const item1 = {
+  item: {
+    title: undefined,
+    img_url: undefined
+  },
+  price: undefined
+};
+
+const item2 = {
+  item: {
+    title: "General Kenobi",
+    img_url: "https://lumiere-a.akamaihd.net/v1/images/Qui-Gon-Jinn_d89416e8.jpeg?region=0%2C1%2C1536%2C864&width=768"
+  },
+  price: "Hello there"
+}
+
 const ListItemTest = createReactClass({
   render: function() {
-    const item = {
-      title: "Hello there",
-      img_url: "https://lumiere-a.akamaihd.net/v1/images/Qui-Gon-Jinn_d89416e8.jpeg?region=0%2C1%2C1536%2C864&width=768"
-    }
     return(
+      // <ListItem
+      //   item = {item1.item}
+      //   price = {item1.price}
+      //   onPressItem = {() => console.log("pressed")}
+      // />
       <ListItem
-        item = {item}
-        price = {"General Kenobi"}
+        item = {item2.item}
+        price = {item2.price}
         onPressItem = {() => console.log("pressed")}
       />
     )
   }
 })
-
-const styles = StyleSheet.create({
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
-  },
-  textContainer: {
-    flex: 1
-  },
-  price: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC'
-  },
-  title: {
-    fontSize: 20,
-    color: '#656565'
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10
-  },
-});
 
 module.exports = ListItemTest;

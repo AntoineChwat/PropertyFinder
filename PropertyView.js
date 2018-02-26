@@ -11,31 +11,36 @@ const Text = ReactNative.Text;
 
 const createReactClass = require('create-react-class');
 
-const PropertyDetails = createReactClass({
+const PropertyDetails = require('./Components').PropertyDetails;
+
+const PropertyView = createReactClass({
   render: function() {
     const { params } = this.props.navigation.state;
     console.log(params)
     return (
-      <View style = {{flex: 1}}>
-        <Image style = {styles.picture}  resizeMode = "contain" source={{ uri: params.item.img_url }} />
-        <View style = {styles.textContainer}>
-          <View style = {styles.header}>
-            <Text style = {styles.title}>
-              {params.item.title}
-            </Text>
-            <Text style = {styles.price}>
-              {params.item.price_formatted}
-            </Text>
-          </View>
-          <Text style = {styles.description}>
-            {params.item.summary}
-          </Text>
-        </View>
-      </View>
+      <PropertyDetails
+        params = {params}
+      />
+      // <View style = {{flex: 1}}>
+      //   <Image style = {styles.picture}  resizeMode = "contain" source={{ uri: params.item.img_url }} />
+      //   <View style = {styles.textContainer}>
+      //     <View style = {styles.header}>
+      //       <Text style = {styles.title}>
+      //         {params.item.title}
+      //       </Text>
+      //       <Text style = {styles.price}>
+      //         {params.item.price_formatted}
+      //       </Text>
+      //     </View>
+      //     <Text style = {styles.description}>
+      //       {params.item.summary}
+      //     </Text>
+      //   </View>
+      // </View>
     );
   }
 })
-PropertyDetails.navigationOptions = {
+PropertyView.navigationOptions = {
   title: 'Property'
 };
 
@@ -69,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = PropertyDetails;
+module.exports = PropertyView;

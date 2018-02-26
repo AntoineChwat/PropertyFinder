@@ -15,6 +15,7 @@ const ListItem = createReactClass({
   _onPress: function() {
     this.props.onPressItem(this.props.index, this.props.item);
   },
+  //Catch undefined fields
   render: function() {
     const self = this;
     return(

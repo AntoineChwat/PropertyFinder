@@ -8,10 +8,9 @@ import { linkTo } from '@storybook/addon-links';
 import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
-import ListItem from './ListItem';
-import DisplayImage from './DisplayImage';
 import SearchBarTest from './SearchBar';
 import ListItemTest from './ListItem'
+import PropertyDetailsTest from './PropertyDetails'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -28,14 +27,17 @@ storiesOf('Button', module)
     </Button>
   ));
 
-storiesOf('List', module).add('Item', () => <ListItem/>);
-
-storiesOf('Detailed', module).add('Image', () => <DisplayImage/>);
-
-storiesOf('Test', module)
-  .add('SearchBar', () => (
+storiesOf('SearchBar', module)
+  .add('Test 1', () => (
     <SearchBarTest/>
-  ))
-  .add('ListItem', () => (
+  ));
+
+storiesOf('ListItem', module)
+  .add('Test 1', () => (
     <ListItemTest/>
+  ));
+
+storiesOf('PropertyDetails', module)
+  .add('Test 1', () => (
+    <PropertyDetailsTest/>
   ));
