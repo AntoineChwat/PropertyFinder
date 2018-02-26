@@ -12,19 +12,22 @@ const Text = ReactNative.Text;
 const createReactClass = require('create-react-class');
 
 const ListItem = createReactClass({
+  _onPress: function() {
+    this.props.onPressItem(this.props.index, this.props.item);
+  },
   render: function() {
     const self = this;
     return(
       <TouchableHighlight
-        onPress={self.props._onPressItem}
+        onPress={self._onPress}
         underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={{ uri: item.img_url }} />
+            <Image style={styles.thumb} source={{ uri: self.props.item.img_url }} />
             <View style={styles.textContainer}>
-              <Text style={styles.price}>{price}</Text>
+              <Text style={styles.price}>{self.props.price}</Text>
               <Text style={styles.title}
-                numberOfLines={1}>{self.props.title}</Text>
+                numberOfLines={1}>{self.props.item.title}</Text>
             </View>
           </View>
           <View style={styles.separator}/>
@@ -61,3 +64,5 @@ const styles = StyleSheet.create({
     padding: 10
   },
 });
+
+module.exports = ListItem;

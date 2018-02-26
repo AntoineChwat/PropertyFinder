@@ -14,11 +14,15 @@ const ListItem = require('../../../Components').ListItem;
 
 const ListItemTest = createReactClass({
   render: function() {
+    const item = {
+      title: "Hello there",
+      img_url: "https://lumiere-a.akamaihd.net/v1/images/Qui-Gon-Jinn_d89416e8.jpeg?region=0%2C1%2C1536%2C864&width=768"
+    }
     return(
       <ListItem
-        title = "Hello there"
-        price = "General Kenobi"
-        _onPressItem = {() => console.log("pressed")}
+        item = {item}
+        price = {"General Kenobi"}
+        onPressItem = {() => console.log("pressed")}
       />
     )
   }

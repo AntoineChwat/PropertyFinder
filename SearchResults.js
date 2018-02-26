@@ -13,41 +13,7 @@ const Text = ReactNative.Text;
 
 const createReactClass = require('create-react-class');
 
-// const ListItem = require('./Components').ListItem
-
-const ListItem = createReactClass({
-  _onPress: function() {
-    this.props.onPressItem(this.props.index, this.props.item);
-  },
-
-  render: function() {
-    const self = this;
-    const item = self.props.item;
-    var price = item.price_formatted
-    if (typeof price != 'undefined') {
-      price = item.price_formatted.split(' ')[0];
-    } else {
-      price = 'error'
-    }
-    return (
-      <TouchableHighlight
-        onPress={self._onPress}
-        underlayColor='#dddddd'>
-        <View>
-          <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={{ uri: item.img_url }} />
-            <View style={styles.textContainer}>
-              <Text style={styles.price}>{price}</Text>
-              <Text style={styles.title}
-                numberOfLines={1}>{item.title}</Text>
-            </View>
-          </View>
-          <View style={styles.separator}/>
-        </View>
-      </TouchableHighlight>
-    );
-  }
-})
+const ListItem = require('./Components').ListItem
 
 const SearchResults = createReactClass({
   _keyExtractor: function(item, index) {
@@ -55,17 +21,25 @@ const SearchResults = createReactClass({
   },
 
   _renderItem: function({item, index}) {
+    const self = this;
+    var price = item.price_formatted
+    if (typeof price != 'undefined') {
+      price = item.price_formatted.split(' ')[0];
+    } else {
+      price = 'error'
+    }
     return (
       <ListItem
         item={item}
-        index={index}
-        onPressItem={this._onPressItem}
+        price={price}
+        onPressItem={self._onPressItem}
       />
     )
   },
 
   _onPressItem: function(index, item) {
     console.log("Pressed row: "+index);
+    console.log(item)
     this.props.navigation.navigate(
       'Property', {item: item}
     );
