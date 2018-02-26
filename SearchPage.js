@@ -16,6 +16,8 @@ const ScrollView = ReactNative.ScrollView;
 
 const createReactClass = require('create-react-class');
 
+const SearchBar = require('./Components').SearchBar;
+
 function urlForQueryAndPage(key, value, pageNumber) {
   const data = {
       country: 'uk',
@@ -83,78 +85,19 @@ const SearchPage = createReactClass({
 
   render: function() {
     const self = this;
-    const spinner = this.state.isLoading ?
-      <ActivityIndicator size='large'/> : null;
     return (
-      <ScrollView scrollEnabled={false} contentContainerStyle={styles.container}>
-        <Text style={styles.description}>
-          Search for houses to buy!
-        </Text>
-        <Text style={styles.description}>
-          Search by place-name or postcode.
-        </Text>
-        <View style={styles.flowRight}>
-          <TextInput
-            underlineColorAndroid={'transparent'}
-            style={styles.searchInput}
-            value={self.state.searchString}
-            onChange={self._onSearchTextChanged}
-            onSubmitEditing={self._onSearchPressed}
-            placeholder='Search via name or postcode'
-            returnKeyType="search"
-          />
-          <Button
-            onPress={self._onSearchPressed}
-            disabled={self.state.isLoading}
-            color='#48BBEC'
-            title='Go'
-          />
-        </View>
-        <Image source={require('./Resources/house.png')} style={styles.image}/>
-        {spinner}
-        <Text style={styles.description}>
-          {this.state.message}
-        </Text>
-      </ScrollView>
+      <SearchBar
+        isLoading = {self.state.isLoading}
+        searchString = {self.state.searchString}
+        message = {self.state.message}
+        _onSearchTextChanged = {self._onSearchTextChanged}
+        _onSearchPressed = {self._onSearchPressed}
+      />
     );
   }
 });
 SearchPage.navigationOptions = {
   title: 'Property Finder'
 };
-
-const styles = StyleSheet.create({
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: 'center'
-  },
-  flowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-  },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flexGrow: 1,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC',
-  },
-  image: {
-    width: 217,
-    height: 138,
-  },
-});
 
 module.exports = SearchPage;

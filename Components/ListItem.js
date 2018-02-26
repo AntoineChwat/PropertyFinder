@@ -1,37 +1,22 @@
 'use strict';
 
 const React = require('react');
-const Component = React.Component;
 
 const ReactNative = require('react-native');
 const StyleSheet = ReactNative.StyleSheet;
 const Image = ReactNative.Image;
 const View = ReactNative.View;
 const TouchableHighlight = ReactNative.TouchableHighlight;
-const FlatList = ReactNative.FlatList;
 const Text = ReactNative.Text;
 
 const createReactClass = require('create-react-class');
 
-// const ListItem = require('./Components').ListItem
-
 const ListItem = createReactClass({
-  _onPress: function() {
-    this.props.onPressItem(this.props.index, this.props.item);
-  },
-
   render: function() {
     const self = this;
-    const item = self.props.item;
-    var price = item.price_formatted
-    if (typeof price != 'undefined') {
-      price = item.price_formatted.split(' ')[0];
-    } else {
-      price = 'error'
-    }
-    return (
+    return(
       <TouchableHighlight
-        onPress={self._onPress}
+        onPress={self.props._onPressItem}
         underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>
@@ -39,52 +24,15 @@ const ListItem = createReactClass({
             <View style={styles.textContainer}>
               <Text style={styles.price}>{price}</Text>
               <Text style={styles.title}
-                numberOfLines={1}>{item.title}</Text>
+                numberOfLines={1}>{self.props.title}</Text>
             </View>
           </View>
           <View style={styles.separator}/>
         </View>
       </TouchableHighlight>
-    );
-  }
-})
-
-const SearchResults = createReactClass({
-  _keyExtractor: function(item, index) {
-    return index.toString();
-  },
-
-  _renderItem: function({item, index}) {
-    return (
-      <ListItem
-        item={item}
-        index={index}
-        onPressItem={this._onPressItem}
-      />
     )
-  },
-
-  _onPressItem: function(index, item) {
-    console.log("Pressed row: "+index);
-    this.props.navigation.navigate(
-      'Property', {item: item}
-    );
-  },
-
-  render: function() {
-    const { params } = this.props.navigation.state;
-    return (
-      <FlatList
-        data={params.listings}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-      />
-    );
   }
 })
-SearchResults.navigationOptions = {
-  title: 'Results'
-};
 
 const styles = StyleSheet.create({
   thumb: {
@@ -113,5 +61,3 @@ const styles = StyleSheet.create({
     padding: 10
   },
 });
-
-module.exports = SearchResults;

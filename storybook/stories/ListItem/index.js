@@ -10,24 +10,16 @@ const Text = ReactNative.Text;
 
 const createReactClass = require('create-react-class');
 
-const ListItem = createReactClass({
+const ListItem = require('../../../Components').ListItem;
+
+const ListItemTest = createReactClass({
   render: function() {
     return(
-      <TouchableHighlight
-        onPress={() => console.log("Item pressed")}
-        underlayColor='#dddddd'>
-        <View>
-          <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={require('../Resources/house.png')} />
-            <View style={styles.textContainer}>
-              <Text style={styles.price}>{'Too expensive'}</Text>
-              <Text style={styles.title}
-                numberOfLines={1}>{'Property'}</Text>
-            </View>
-          </View>
-          <View style={styles.separator}/>
-        </View>
-      </TouchableHighlight>
+      <ListItem
+        title = "Hello there"
+        price = "General Kenobi"
+        _onPressItem = {() => console.log("pressed")}
+      />
     )
   }
 })
@@ -56,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = ListItem;
+module.exports = ListItemTest;

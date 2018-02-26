@@ -10,6 +10,8 @@ import CenterView from './CenterView';
 import Welcome from './Welcome';
 import ListItem from './ListItem';
 import DisplayImage from './DisplayImage';
+import SearchBarTest from './SearchBar';
+import ListItemTest from './ListItem'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -29,3 +31,11 @@ storiesOf('Button', module)
 storiesOf('List', module).add('Item', () => <ListItem/>);
 
 storiesOf('Detailed', module).add('Image', () => <DisplayImage/>);
+
+storiesOf('Test', module)
+  .add('SearchBar', () => (
+    <SearchBarTest/>
+  ))
+  .add('ListItem', () => (
+    <ListItemTest/>
+  ));
