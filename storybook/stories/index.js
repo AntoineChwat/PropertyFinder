@@ -8,9 +8,6 @@ import { linkTo } from '@storybook/addon-links';
 import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
-import SearchBarTest from './SearchBar';
-import ListItemTest from './ListItem'
-import PropertyDetailsTest from './PropertyDetails'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -25,19 +22,4 @@ storiesOf('Button', module)
     <Button onPress={action('clicked-emoji')}>
       <Text>😀 😎 👍 💯</Text>
     </Button>
-  ));
-
-storiesOf('SearchBar', module)
-  .add('Test 1', () => (
-    <SearchBarTest/>
-  ));
-
-storiesOf('ListItem', module)
-  .add('Test 1', () => (
-    <ListItemTest/>
-  ));
-
-storiesOf('PropertyDetails', module)
-  .add('Test 1', () => (
-    <PropertyDetailsTest/>
   ));

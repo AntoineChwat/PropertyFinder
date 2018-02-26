@@ -4,9 +4,29 @@ const ReactNative = require('react-native');
 
 const createReactClass = require('create-react-class');
 
+import { storiesOf } from '@storybook/react-native';
+
 const PropertyDetails = require('../../../Components').PropertyDetails;
 
-const params = {
+var param1 = {
+  item: {
+    title: "Title",
+    price_formatted: "Price",
+    summary: "This is a summary mate",
+    img_url: "https://lumiere-a.akamaihd.net/v1/images/Qui-Gon-Jinn_d89416e8.jpeg?region=0%2C1%2C1536%2C864&width=768"
+  }
+}
+
+var param2 = {
+  item: {
+    title: undefined,
+    price_formatted: undefined,
+    summary: undefined,
+    img_url: "https://lumiere-a.akamaihd.net/v1/images/Qui-Gon-Jinn_d89416e8.jpeg?region=0%2C1%2C1536%2C864&width=768"
+  }
+}
+
+var param3 = {
   item: {
     title: "Title",
     price_formatted: "Price",
@@ -15,14 +35,33 @@ const params = {
   }
 }
 
-const PropertyDetailsTest = createReactClass({
-  render: function() {
-    return(
-      <PropertyDetails
-        params = {params}
-      />
-    )
+var param4 = {
+  item: {
+    title: "Title",
+    price_formatted: "Price",
+    summary: "This is a summary mate",
+    img_url: undefined
   }
-})
+}
 
-module.exports = PropertyDetailsTest
+storiesOf('PropertyDetails', module)
+  .add('Standard test', () => (
+    <PropertyDetails
+      params = {param1}
+    />
+  ))
+  .add('Empty text fields', () => (
+    <PropertyDetails
+      params = {param2}
+    />
+  ))
+  .add('Vertical image', () => (
+    <PropertyDetails
+      params = {param3}
+    />
+  ))
+  .add('No image', () => (
+    <PropertyDetails
+      params = {param4}
+    />
+  ))
