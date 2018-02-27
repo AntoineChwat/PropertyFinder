@@ -26,7 +26,7 @@ const SearchResults = createReactClass({
     if (typeof price != 'undefined') {
       price = item.price_formatted.split(' ')[0];
     } else {
-      price = 'error'
+      price = ''
     }
     return (
       <ListItem

@@ -12,21 +12,42 @@ const createReactClass = require('create-react-class');
 
 const PropertyDetails = createReactClass({
   render: function() {
-    const params = this.props.params
+    const self = this;
+    const params = self.props.params
+    var url = params.item.img_url;
+    if (typeof url != 'string' || url =="") {
+      url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
+    }
+    var price = params.item.price_formatted;
+    if (typeof price != 'string' || price =="") {
+      price = "Unkown price"
+    }
+    var title = params.item.title;
+    if (typeof title != 'string' || title =="") {
+      title = "Unkown title"
+    }
+    var summary = params.item.summary;
+    if (typeof summary != 'string' || summary =="") {
+      summary = "Unkown summary"
+    }
     return (
       <View style = {{flex: 1}}>
-        <Image style = {styles.picture}  resizeMode = "contain" source={{ uri: params.item.img_url }} />
+        <Image
+          style = {styles.picture}
+          resizeMode = "contain"
+          source={{ uri: url }}
+        />
         <View style = {styles.textContainer}>
           <View style = {styles.header}>
             <Text style = {styles.title}>
-              {params.item.title}
+              {title}
             </Text>
             <Text style = {styles.price}>
-              {params.item.price_formatted}
+              {price}
             </Text>
           </View>
           <Text style = {styles.description}>
-            {params.item.summary}
+            {summary}
           </Text>
         </View>
       </View>

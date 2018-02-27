@@ -18,17 +18,29 @@ const ListItem = createReactClass({
   //Catch undefined fields
   render: function() {
     const self = this;
+    var url = self.props.item.img_url;
+    if (typeof url != 'string' || url =="") {
+      url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
+    }
+    var price = self.props.price;
+    if (typeof price != 'string' || price =="") {
+      price = "Unkown price"
+    }
+    var title = self.props.item.title;
+    if (typeof title != 'string' || title =="") {
+      title = "Unkown title"
+    }
     return(
       <TouchableHighlight
         onPress={self._onPress}
         underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={{ uri: self.props.item.img_url }} />
+            <Image style={styles.thumb} source={{ uri: url }} />
             <View style={styles.textContainer}>
-              <Text style={styles.price}>{self.props.price}</Text>
+              <Text style={styles.price}>{price}</Text>
               <Text style={styles.title}
-                numberOfLines={1}>{self.props.item.title}</Text>
+                numberOfLines={1}>{title}</Text>
             </View>
           </View>
           <View style={styles.separator}/>
