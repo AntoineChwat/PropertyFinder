@@ -41,7 +41,6 @@ const SearchPage = createReactClass({
   getInitialState: function() {
     return {
       searchString: 'London',
-      isLoading: false,
       message: ''
     }
   },
@@ -52,17 +51,17 @@ const SearchPage = createReactClass({
 
   _executeQuery: function(query) {
     console.log(query);
-    this.setState({
-      isLoading: true
-    });
+    this.props.startSearch();
     fetch(query)
       .then(response => response.json())
       .then(json => this._handleResponse(json.response))
-      .catch(error =>
+      .catch(error => {
         this.setState({
           isLoading: false,
           message: 'Something bad happened ' + error
-        })
+        }),
+        this.props.stopSearch();
+      }
       );
   },
 
@@ -73,7 +72,8 @@ const SearchPage = createReactClass({
   },
 
   _handleResponse: function(response) {
-    this.setState({ isLoading: false , message: '' });
+    this.setState({ message: '' });
+    this.props.stopSearch();
     if (response.application_response_code.substr(0, 1) === '1') {
       this.props.navigation.navigate(
         'Results', {listings: response.listings}
@@ -87,7 +87,7 @@ const SearchPage = createReactClass({
     const self = this;
     return (
       <SearchBar
-        isLoading = {self.state.isLoading}
+        isLoading = {this.props.isLoading}
         searchString = {self.state.searchString}
         message = {self.state.message}
         _onSearchTextChanged = {self._onSearchTextChanged}

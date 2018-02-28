@@ -19,7 +19,10 @@
 
  const StackNavigator = require('react-navigation').StackNavigator;
 
- const SearchPage = require('./SearchPage');
+ const Provider = require('react-redux').Provider;
+ const store = require('./store');
+
+ const SearchPageContainer = require('./SearchPageContainer');
  const SearchResults = require('./SearchResults')
  const PropertyView = require ('./PropertyView')
 
@@ -32,19 +35,20 @@
 
 type Props = {};
 
-const App = StackNavigator({
-  Home: { screen: SearchPage },
+const Main = StackNavigator({
+  Home: { screen: SearchPageContainer },
   Results: { screen: SearchResults },
   Property: {screen: PropertyView},
 });
 
-const styles = StyleSheet.create({
-  description: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565',
-    marginTop: 65,
-  },
-});
+const App = createReactClass({
+  render() {
+    return(
+      <Provider store = {store}>
+        <Main/>
+      </Provider>
+    )
+  }
+})
 
 module.exports = App;
