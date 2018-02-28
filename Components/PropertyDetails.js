@@ -39,7 +39,7 @@ const PropertyDetails = createReactClass({
         />
         <View style = {styles.textContainer}>
           <View style = {styles.header}>
-            <Text style = {styles.title}>
+            <Text style = {styles.title} numberOfLines={1}>
               {title}
             </Text>
             <Text style = {styles.price}>

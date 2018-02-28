@@ -23,23 +23,21 @@
  const store = require('./store');
 
  const SearchPageContainer = require('./SearchPageContainer');
- const SearchResults = require('./SearchResults')
- const PropertyView = require ('./PropertyView')
-
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' +
-//     'Cmd+D or shake for dev menu',
-//   android: 'Double tap R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu',
-// });
+ const SearchResultsContainer = require('./SearchResultsContainer')
+ const PropertyViewContainer = require ('./PropertyViewContainer')
 
 type Props = {};
 
-const Main = StackNavigator({
-  Home: { screen: SearchPageContainer },
-  Results: { screen: SearchResults },
-  Property: {screen: PropertyView},
-});
+const Main = StackNavigator(
+  {
+    Home: { screen: SearchPageContainer },
+    Results: { screen: SearchResultsContainer },
+    Property: {screen: PropertyViewContainer},
+  },
+  {
+    initialRouteName: 'Home'
+  }
+);
 
 const App = createReactClass({
   render() {

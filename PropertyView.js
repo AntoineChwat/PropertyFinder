@@ -21,22 +21,6 @@ const PropertyView = createReactClass({
       <PropertyDetails
         params = {params}
       />
-      // <View style = {{flex: 1}}>
-      //   <Image style = {styles.picture}  resizeMode = "contain" source={{ uri: params.item.img_url }} />
-      //   <View style = {styles.textContainer}>
-      //     <View style = {styles.header}>
-      //       <Text style = {styles.title}>
-      //         {params.item.title}
-      //       </Text>
-      //       <Text style = {styles.price}>
-      //         {params.item.price_formatted}
-      //       </Text>
-      //     </View>
-      //     <Text style = {styles.description}>
-      //       {params.item.summary}
-      //     </Text>
-      //   </View>
-      // </View>
     );
   }
 })
