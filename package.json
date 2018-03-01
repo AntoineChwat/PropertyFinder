@@ -10,7 +10,10 @@
   "dependencies": {
     "create-react-class": "^15.6.3",
     "react": "16.2.0",
-    "react-native": "0.53.3"
+    "react-native": "0.53.3",
+    "react-navigation-redux-helpers": "^1.0.1",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.14",

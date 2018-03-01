@@ -39,7 +39,7 @@ const SearchResults = createReactClass({
 
   _onPressItem: function(index, item) {
     console.log("Pressed row: "+index);
-    console.log(item)
+    // console.log(item)
     this.props.navigation.navigate(
       'Property', {item: item}
     );

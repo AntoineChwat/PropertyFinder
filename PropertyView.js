@@ -16,7 +16,7 @@ const PropertyDetails = require('./Components').PropertyDetails;
 const PropertyView = createReactClass({
   render: function() {
     const { params } = this.props.navigation.state;
-    console.log(params)
+    console.log(this.props.nav)
     return (
       <PropertyDetails
         params = {params}

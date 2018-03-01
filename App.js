@@ -1,51 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict'
 
- 'use strict'
+const React = require('react');
 
- const React = require('react');
- const Component = React.Component;
+const createReactClass = require('create-react-class');
 
- const ReactNative = require('react-native');
- const Platform = ReactNative.Platform;
- const StyleSheet = ReactNative.StyleSheet;
- const Text = ReactNative.Text;
- const View = ReactNative.View;
+const ReactNavigation = require ('react-navigation');
+const addNavigationHelpers = ReactNavigation.addNavigationHelpers;
 
- const createReactClass = require('create-react-class');
+const ReactNavigationReduxHelpers = require('react-navigation-redux-helpers');
+const createReduxBoundAddListener = ReactNavigationReduxHelpers.createReduxBoundAddListener;
+const createReactNavigationReduxMiddleware = ReactNavigationReduxHelpers.createReactNavigationReduxMiddleware;
 
- const StackNavigator = require('react-navigation').StackNavigator;
+const AppNavigator = require('./AppNavigator');
 
- const Provider = require('react-redux').Provider;
- const store = require('./store');
-
- const SearchPageContainer = require('./SearchPageContainer');
- const SearchResultsContainer = require('./SearchResultsContainer')
- const PropertyViewContainer = require ('./PropertyViewContainer')
-
-type Props = {};
-
-const Main = StackNavigator(
-  {
-    Home: { screen: SearchPageContainer },
-    Results: { screen: SearchResultsContainer },
-    Property: {screen: PropertyViewContainer},
-  },
-  {
-    initialRouteName: 'Home'
-  }
+const middleware = createReactNavigationReduxMiddleware(
+ "root",
+ state => state.nav,
 );
+const addListener = createReduxBoundAddListener("root");
 
 const App = createReactClass({
   render() {
-    return(
-      <Provider store = {store}>
-        <Main/>
-      </Provider>
-    )
+    return (
+      <AppNavigator navigation={addNavigationHelpers({
+        dispatch: this.props.dispatch,
+        state: this.props.nav,
+        addListener: addListener,
+      })} />
+    );
   }
 })
 

@@ -55,8 +55,8 @@ const SearchPage = createReactClass({
       .then(response => response.json())
       .then(json => {
         this._handleResponse(json.response),
-        this.props.sendResult(json.response),
-        console.log(this.props.search.result)
+        this.props.sendResult(json.response)
+        // console.log(this.props.search.result)
       })
       .catch(error => {
         this.props.modifyMessage('Something bad happened ' + error),
