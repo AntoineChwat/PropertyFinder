@@ -14,19 +14,19 @@ const PropertyDetails = createReactClass({
   render: function() {
     const self = this;
     const params = self.props.params
-    var url = params.item.img_url;
+    var url = params.img_url;
     if (typeof url != 'string' || url =="") {
       url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
     }
-    var price = params.item.price_formatted;
+    var price = params.price_formatted;
     if (typeof price != 'string' || price =="") {
       price = "Unkown price"
     }
-    var title = params.item.title;
+    var title = params.title;
     if (typeof title != 'string' || title =="") {
       title = "Unkown title"
     }
-    var summary = params.item.summary;
+    var summary = params.summary;
     if (typeof summary != 'string' || summary =="") {
       summary = "Unkown summary"
     }

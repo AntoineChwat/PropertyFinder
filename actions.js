@@ -37,6 +37,13 @@ export const returnedError = function() {
   }
 }
 
+export const returnItem = function(item) {
+  return {
+    type: "RETURN_ITEM",
+    item
+  }
+}
+
 export const updateNavState = function (response) {
   return {
     type: "UPDATE_NAV_STATE",

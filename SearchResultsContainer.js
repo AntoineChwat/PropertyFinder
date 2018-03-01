@@ -1,6 +1,9 @@
 const connect = require('react-redux').connect;
 
+import { NavigationActions } from 'react-navigation';
+
 const actions = require('./actions');
+const returnItem = actions.returnItem;
 const SearchResults = require('./SearchResults');
 
 const mapStateToProps = function(state) {
@@ -14,6 +17,10 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    onSearchPressed(item) {
+      dispatch(NavigationActions.navigate({ routeName: 'Property' }));
+      dispatch(returnItem(item));
+    }
   }
 }
 

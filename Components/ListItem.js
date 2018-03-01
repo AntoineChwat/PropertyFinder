@@ -22,7 +22,7 @@ const ListItem = createReactClass({
     if (typeof url != 'string' || url =="") {
       url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
     }
-    var price = self.props.price;
+    var price = self.props.item.price_formatted;
     if (typeof price != 'string' || price =="") {
       price = "Unkown price"
     }

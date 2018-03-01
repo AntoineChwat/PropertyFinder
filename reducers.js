@@ -9,7 +9,8 @@ const initialSearchState = {
   returnedError: false,
   result: {},
   mesage: "",
-  searchString: "London"
+  searchString: "London",
+  item: {}
 };
 
 const searchReducer = function(state = initialSearchState, action) {
@@ -43,6 +44,11 @@ const searchReducer = function(state = initialSearchState, action) {
       return {
         ...state,
         error: true
+      }
+    case "RETURN_ITEM":
+      return {
+        ...state,
+        item: action.item
       }
     default:
       return state;
