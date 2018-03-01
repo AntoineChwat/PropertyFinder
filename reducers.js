@@ -4,14 +4,15 @@ const AppNavigator = require('./AppNavigator');
 
 var combineReducers = require('redux').combineReducers;
 
-const searchInitialState = {
+const initialSearchState = {
   isLoading: false,
   returnedError: false,
   result: {},
-  mesage: ""
+  mesage: "",
+  searchString: "London"
 };
 
-const searchReducer = function(state = searchInitialState, action) {
+const searchReducer = function(state = initialSearchState, action) {
   switch(action.type) {
     case "START_LOADING":
       return {
@@ -27,13 +28,22 @@ const searchReducer = function(state = searchInitialState, action) {
       return {
         ...state,
         result: action.result
-      }
+      };
     case "UPDATE_MESSAGE":
       return {
         ...state,
         message: action.message
+      };
+    case "UPDATE_SEARCH_STRING":
+      return {
+        ...state,
+        searchString: action.searchString
       }
-
+    case "RETURNED_ERROR":
+      return {
+        ...state,
+        error: true
+      }
     default:
       return state;
   }

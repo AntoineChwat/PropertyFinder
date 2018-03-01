@@ -39,14 +39,13 @@ const SearchResults = createReactClass({
 
   _onPressItem: function(index, item) {
     console.log("Pressed row: "+index);
-    // console.log(item)
     this.props.navigation.navigate(
       'Property', {item: item}
     );
   },
 
   render: function() {
-    const { params } = this.props.navigation.state;
+    const params = this.props.search.result;
     return (
       <FlatList
         data={params.listings}

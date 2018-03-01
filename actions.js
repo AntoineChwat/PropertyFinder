@@ -23,3 +23,23 @@ export const updateMessage = function(message) {
     message
   }
 }
+
+export const updateSearchString = function(searchString) {
+  return {
+    type: "UPDATE_SEARCH_STRING",
+    searchString
+  }
+}
+
+export const returnedError = function() {
+  return {
+    type: "RETURNED_ERROR"
+  }
+}
+
+export const updateNavState = function (response) {
+  return {
+    type: "UPDATE_NAV_STATE",
+    response
+  }
+}
