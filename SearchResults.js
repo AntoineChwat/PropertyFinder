@@ -24,6 +24,7 @@ const SearchResults = createReactClass({
   },
 
   _renderItem: function({item, index}) {
+    console.log(item);
     const self = this;
     return (
       <ListItem

@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem should render correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={null}
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "padding": 10,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://imgs.nestimg.com/unspecified_london_108799203763910940.jpg",
+          }
+        }
+        style={
+          Object {
+            "height": 80,
+            "marginRight": 10,
+            "width": 80,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#48BBEC",
+              "fontSize": 25,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          £545,000
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Object {
+              "color": "#656565",
+              "fontSize": 20,
+            }
+          }
+        >
+          Werrington Street, London, NW1
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#dddddd",
+          "height": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;

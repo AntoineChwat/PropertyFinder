@@ -9,27 +9,35 @@ const View = ReactNative.View;
 const TouchableHighlight = ReactNative.TouchableHighlight;
 const Text = ReactNative.Text;
 
+const PropTypes = require('prop-types');
+
 const createReactClass = require('create-react-class');
 
 const ListItem = createReactClass({
+  propTypes: {
+    onPressItem: PropTypes.func.isRequired,
+    index: PropTypes.number,
+    item: PropTypes.object.isRequired
+  },
+
   _onPress: function() {
     this.props.onPressItem(this.props.index, this.props.item);
   },
   render: function() {
     const self = this;
     var url = self.props.item.img_url;
-    if (typeof url != 'string' || url =="") {
-      url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
+    if (typeof url != 'string' || url =='') {
+      url = 'https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png';
     }
     var price = self.props.item.price_formatted;
-    if (typeof price != 'string' || price =="") {
-      price = "Unkown price"
+    if (typeof price != 'string' || price =='') {
+      price = 'Unkown price';
     }
     var title = self.props.item.title;
-    if (typeof title != 'string' || title =="") {
-      title = "Unkown title"
+    if (typeof title != 'string' || title =='') {
+      title = 'Unkown title';
     }
-    return(
+    return (
       <TouchableHighlight
         onPress={self._onPress}
         underlayColor='#dddddd'>
@@ -45,9 +53,9 @@ const ListItem = createReactClass({
           <View style={styles.separator}/>
         </View>
       </TouchableHighlight>
-    )
+    );
   }
-})
+});
 
 const styles = StyleSheet.create({
   thumb: {
@@ -74,7 +82,7 @@ const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     padding: 10
-  },
+  }
 });
 
 module.exports = ListItem;
