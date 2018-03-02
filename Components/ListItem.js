@@ -15,14 +15,13 @@ const ListItem = createReactClass({
   _onPress: function() {
     this.props.onPressItem(this.props.index, this.props.item);
   },
-  //Catch undefined fields
   render: function() {
     const self = this;
     var url = self.props.item.img_url;
     if (typeof url != 'string' || url =="") {
       url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
     }
-    var price = self.props.price;
+    var price = self.props.item.price_formatted;
     if (typeof price != 'string' || price =="") {
       price = "Unkown price"
     }
