@@ -10,15 +10,23 @@ const View = ReactNative.View;
 const Button = ReactNative.Button;
 const ActivityIndicator = ReactNative.ActivityIndicator;
 const Image = ReactNative.Image;
-const Keyboard = ReactNative.Keyboard;
 const ScrollView = ReactNative.ScrollView;
+
+const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
 const SearchBar = createReactClass({
+  propTypes: {
+    _onSearchTextChanged: PropTypes.func.isRequired,
+    _onSearchPressed: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    searchString: PropTypes.string,
+    message: PropTypes.string
+  },
+
   render: function() {
-    const self = this;
-    const spinner = self.props.isLoading ?
+    const spinner = this.props.isLoading ?
       <ActivityIndicator size='large'/> : null;
     return (
       <ScrollView scrollEnabled={false} contentContainerStyle={styles.container}>
@@ -32,15 +40,15 @@ const SearchBar = createReactClass({
           <TextInput
             underlineColorAndroid={'transparent'}
             style={styles.searchInput}
-            value={self.props.searchString}
-            onChange={self.props._onSearchTextChanged}
-            onSubmitEditing={self.props._onSearchPressed}
+            value={this.props.searchString}
+            onChange={this.props._onSearchTextChanged}
+            onSubmitEditing={this.props._onSearchPressed}
             placeholder='Search via name or postcode'
             returnKeyType="search"
           />
           <Button
-            onPress={self.props._onSearchPressed}
-            disabled={self.props.isLoading}
+            onPress={this.props._onSearchPressed}
+            disabled={this.props.isLoading}
             color='#48BBEC'
             title='Go'
           />
@@ -48,12 +56,12 @@ const SearchBar = createReactClass({
         <Image source={require('../Resources/house.png')} style={styles.image}/>
         {spinner}
         <Text style={styles.description}>
-          {self.props.message}
+          {this.props.message}
         </Text>
       </ScrollView>
     );
   }
-})
+});
 
 const styles = StyleSheet.create({
   description: {
@@ -70,7 +78,7 @@ const styles = StyleSheet.create({
   flowRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   searchInput: {
     height: 36,
@@ -81,12 +89,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#48BBEC',
     borderRadius: 8,
-    color: '#48BBEC',
+    color: '#48BBEC'
   },
   image: {
     width: 217,
-    height: 138,
-  },
+    height: 138
+  }
 });
 
 module.exports = SearchBar;

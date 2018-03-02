@@ -1,0 +1,20 @@
+<testsuites name="jest tests" tests="7" failures="0" time="1.219">
+  <testsuite name="searchReducer" errors="0" failures="0" skipped="0" timestamp="2018-03-02T15:10:41" time="0.881" tests="6">
+    <testcase classname="searchReducer should return initial state" name="searchReducer should return initial state" time="0.003">
+    </testcase>
+    <testcase classname="searchReducer should handle START_LOADING" name="searchReducer should handle START_LOADING" time="0.001">
+    </testcase>
+    <testcase classname="searchReducer should handle RETURN_RESULT" name="searchReducer should handle RETURN_RESULT" time="0">
+    </testcase>
+    <testcase classname="searchReducer should handle UPDATE_SEARCH_STRING" name="searchReducer should handle UPDATE_SEARCH_STRING" time="0">
+    </testcase>
+    <testcase classname="searchReducer should handle RETURN_ERROR" name="searchReducer should handle RETURN_ERROR" time="0">
+    </testcase>
+    <testcase classname="searchReducer should handle RETURN_ITEM" name="searchReducer should handle RETURN_ITEM" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListItem" errors="0" failures="0" skipped="0" timestamp="2018-03-02T15:10:42" time="0.338" tests="1">
+    <testcase classname="ListItem should render correctly" name="ListItem should render correctly" time="0.021">
+    </testcase>
+  </testsuite>
+</testsuites>

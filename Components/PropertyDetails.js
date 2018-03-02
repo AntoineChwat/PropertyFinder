@@ -8,27 +8,32 @@ const Image = ReactNative.Image;
 const View = ReactNative.View;
 const Text = ReactNative.Text;
 
+const PropTypes = require('prop-types');
+
 const createReactClass = require('create-react-class');
 
 const PropertyDetails = createReactClass({
+  propTypes: {
+    params: PropTypes.object.isRequired
+  },
+
   render: function() {
-    const self = this;
-    const params = self.props.params
+    const params = this.props.params;
     var url = params.img_url;
-    if (typeof url != 'string' || url =="") {
-      url = "https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png"
+    if (typeof url != 'string' || url =='') {
+      url = 'https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png';
     }
     var price = params.price_formatted;
-    if (typeof price != 'string' || price =="") {
-      price = "Unkown price"
+    if (typeof price != 'string' || price =='') {
+      price = 'Unkown price';
     }
     var title = params.title;
-    if (typeof title != 'string' || title =="") {
-      title = "Unkown title"
+    if (typeof title != 'string' || title =='') {
+      title = 'Unkown title';
     }
     var summary = params.summary;
-    if (typeof summary != 'string' || summary =="") {
-      summary = "Unkown summary"
+    if (typeof summary != 'string' || summary =='') {
+      summary = 'Unkown summary';
     }
     return (
       <View style = {{flex: 1}}>
@@ -53,7 +58,7 @@ const PropertyDetails = createReactClass({
       </View>
     );
   }
-})
+});
 
 const styles = StyleSheet.create({
   picture: {
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#656565',
     top: 5
-  },
+  }
 });
 
-module.exports = PropertyDetails
+module.exports = PropertyDetails;

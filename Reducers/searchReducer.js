@@ -1,13 +1,9 @@
 'use strict';
 
-const AppNavigator = require('./AppNavigator');
-
-const combineReducers = require('redux').combineReducers;
-
 const initialSearchState = {
   isLoading: false,
   result: {},
-  mesage: '',
+  message: '',
   searchString: 'London',
   item: {}
 };
@@ -52,19 +48,4 @@ const searchReducer = function(state = initialSearchState, action) {
   }
 };
 
-const router = AppNavigator.router;
-const mainNavAction = router.getActionForPathAndParams('Home');
-const initialNavState = router.getStateForAction(mainNavAction);
-
-const navReducer = (state = initialNavState, action) => {
-  const nextState = AppNavigator.router.getStateForAction(action, state);
-  return nextState || state;
-};
-
-
-const rootReducer = combineReducers({
-  search: searchReducer,
-  nav: navReducer
-});
-
-module.exports = rootReducer;
+module.exports = searchReducer;
