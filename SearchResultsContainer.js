@@ -1,3 +1,5 @@
+'use strict';
+
 const connect = require('react-redux').connect;
 
 import { NavigationActions } from 'react-navigation';

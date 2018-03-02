@@ -1,3 +1,5 @@
+'use strict';
+
 const StackNavigator = require('react-navigation').StackNavigator;
 
 const SearchPageContainer = require('./SearchPageContainer');

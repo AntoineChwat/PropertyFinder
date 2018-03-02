@@ -1,12 +1,11 @@
-"use strict";
+'use strict';
 
 const AppNavigator = require('./AppNavigator');
 
-var combineReducers = require('redux').combineReducers;
+const combineReducers = require('redux').combineReducers;
 
 const initialSearchState = {
   isLoading: false,
-  returnedError: false,
   result: {},
   mesage: "",
   searchString: "London",
@@ -16,40 +15,38 @@ const initialSearchState = {
 const searchReducer = function(state = initialSearchState, action) {
   switch(action.type) {
     case "START_LOADING":
-      return {
-        ...state,
-        isLoading: true
-      };
-    case "STOP_LOADING":
-      return {
-        ...state,
-        isLoading: false
-      };
+      return (
+        Object.assign({}, state, {
+          isLoading: true,
+          message: ''
+        })
+      );
     case "RETURN_RESULT":
-      return {
-        ...state,
-        result: action.result
-      };
-    case "UPDATE_MESSAGE":
-      return {
-        ...state,
-        message: action.message
-      };
+      return (
+        Object.assign({}, state, {
+          isLoading: false,
+          result: Object.assign({}, action.result)
+        })
+      );
     case "UPDATE_SEARCH_STRING":
-      return {
-        ...state,
-        searchString: action.searchString
-      }
-    case "RETURNED_ERROR":
-      return {
-        ...state,
-        error: true
-      }
+      return (
+        Object.assign({}, state, {
+          searchString: action.searchString
+        })
+      );
+    case "RETURN_ERROR":
+      return (
+        Object.assign({}, state, {
+          isLoading: false,
+          message: action.message
+        })
+      );
     case "RETURN_ITEM":
-      return {
-        ...state,
-        item: action.item
-      }
+      return (
+        Object.assign({}, state, {
+          item: Object.assign({}, action.item)
+        })
+      )
     default:
       return state;
   }

@@ -1,15 +1,16 @@
+'use strict';
+
 const connect = require('react-redux').connect;
 
 const actions = require('./actions');
 const PropertyView = require('./PropertyView');
 
 const mapStateToProps = function(state) {
-  return {
-    ...state,
-    result: {
-      ...state.result
-    }
-  }
+  return (
+    Object.assign({}, state, {
+      result: Object.assign({}, state.result)
+    })
+  )
 }
 
 const mapDispatchToProps = function(dispatch) {

@@ -1,15 +1,14 @@
+'use strict';
+
 const connect = require('react-redux').connect;
 
-import { NavigationActions } from 'react-navigation'
+const NavigationActions = require('react-navigation').NavigationActions;
 
 const actions = require('./actions');
 const startLoading = actions.startLoading;
-const stopLoading = actions.stopLoading;
 const returnResult = actions.returnResult;
-const updateMessage = actions.updateMessage;
 const updateSearchString = actions.updateSearchString;
-const returnedError = actions.returnedError;
-const updateNavState = actions.updateNavState;
+const returnError = actions.returnError;
 
 const SearchPage = require('./SearchPage');
 
@@ -32,38 +31,26 @@ function urlForQueryAndPage(key, value, pageNumber) {
 }
 
 const mapStateToProps = function(state) {
-  return {
-    ...state,
-    result: {
-      ...state.result
-    }
-  }
+  return (
+    Object.assign({}, state, {
+      result: Object.assign({}, state.result)
+    })
+  )
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
     startSearch: function() {
-      dispatch(startLoading()),
-      dispatch(updateMessage(''));
-    },
-    stopSearch: function() {
-      dispatch(stopLoading());
+      dispatch(startLoading());
     },
     sendResult: function(result) {
-      this.stopSearch();
       dispatch(returnResult(result));
-    },
-    modifyMessage: function(message) {
-      dispatch(updateMessage(message));
     },
     modifySearchString: function(searchString) {
       dispatch(updateSearchString(searchString));
     },
     gotError: function(error) {
-      dispatch(stopLoading());
-      dispatch(returnedError());
-      dispatch(updateMessage('An error occured: ' + error));
-      this.modifySearchString("Idiot");
+      dispatch(returnError('An error occured: ' + error));
     },
     onSearchPressed: function(searchString) {
       const query = urlForQueryAndPage('place_name', searchString, 1);
@@ -71,7 +58,6 @@ const mapDispatchToProps = function(dispatch) {
       fetch(query)
         .then(response => response.json())
         .then(json => {
-          this.sendResult(json.response)
           if (json.response.application_response_code.substr(0, 1) !== '1') {
             throw "This location does not exist madafucka!"
           } else {
