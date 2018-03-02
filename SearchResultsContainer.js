@@ -9,13 +9,12 @@ const returnItem = actions.returnItem;
 const SearchResults = require('./SearchResults');
 
 const mapStateToProps = function(state) {
-  return {
-    ...state,
-    result: {
-      ...state.result
-    }
-  }
-}
+  return (
+    Object.assign({}, state, {
+      result: Object.assign({}, state.result)
+    })
+  );
+};
 
 const mapDispatchToProps = function(dispatch) {
   return {
@@ -23,12 +22,12 @@ const mapDispatchToProps = function(dispatch) {
       dispatch(NavigationActions.navigate({ routeName: 'Property' }));
       dispatch(returnItem(item));
     }
-  }
-}
+  };
+};
 
 const SearchResultsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchResults)
+)(SearchResults);
 
 module.exports = SearchResultsContainer;

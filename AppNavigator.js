@@ -9,7 +9,7 @@ const PropertyViewContainer = require ('./PropertyViewContainer');
 const AppNavigator = StackNavigator({
   Home: { screen: SearchPageContainer },
   Results: { screen: SearchResultsContainer },
-  Property: {screen: PropertyViewContainer},
+  Property: {screen: PropertyViewContainer}
 }, {
   initialRouteName: 'Home'
 });

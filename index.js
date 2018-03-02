@@ -6,4 +6,4 @@ const App = require('./AppContainer');
 
 AppRegistry.registerComponent('PropertyFinder', function(){
   return App;
-})
+});

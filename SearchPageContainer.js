@@ -12,14 +12,14 @@ const returnError = actions.returnError;
 
 const SearchPage = require('./SearchPage');
 
-function urlForQueryAndPage(key, value, pageNumber) {
+const urlForQueryAndPage = function(key, value, pageNumber) {
   const data = {
       country: 'uk',
       pretty: '1',
       encoding: 'json',
       listing_type: 'buy',
       action: 'search_listings',
-      page: pageNumber,
+      page: pageNumber
   };
   data[key] = value;
 
@@ -28,15 +28,15 @@ function urlForQueryAndPage(key, value, pageNumber) {
     .join('&');
 
   return 'https://api.nestoria.co.uk/api?' + querystring;
-}
+};
 
 const mapStateToProps = function(state) {
   return (
     Object.assign({}, state, {
       result: Object.assign({}, state.result)
     })
-  )
-}
+  );
+};
 
 const mapDispatchToProps = function(dispatch) {
   return {
@@ -59,22 +59,22 @@ const mapDispatchToProps = function(dispatch) {
         .then(response => response.json())
         .then(json => {
           if (json.response.application_response_code.substr(0, 1) !== '1') {
-            throw "This location does not exist madafucka!"
+            throw 'This location does not exist madafucka!';
           } else {
-            this.sendResult(json.response)
-            dispatch(NavigationActions.navigate({ routeName: 'Results' }))
+            this.sendResult(json.response);
+            dispatch(NavigationActions.navigate({ routeName: 'Results' }));
           }
         })
         .catch(error => {
           this.gotError(error);
         });
     }
-  }
-}
+  };
+};
 
 const SearchPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchPage)
+)(SearchPage);
 
 module.exports = SearchPageContainer;

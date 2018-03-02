@@ -1,7 +1,6 @@
 'use strict';
 
 const React = require('react');
-const Component = React.Component;
 
 const ReactNative = require('react-native');
 const FlatList = ReactNative.FlatList;
@@ -10,9 +9,16 @@ const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
-const ListItem = require('./Components').ListItem
+const ListItem = require('./Components').ListItem;
 
 const SearchResults = createReactClass({
+  propTypes: {
+    onSearchPressed: PropTypes.func.isRequired,
+    search: PropTypes.shape({
+      result: PropTypes.object.isRequired
+    })
+  },
+
   _keyExtractor: function(item, index) {
     return index.toString();
   },
@@ -24,7 +30,7 @@ const SearchResults = createReactClass({
         item={item}
         onPressItem={self._onPressItem}
       />
-    )
+    );
   },
 
   _onPressItem: function(index, item) {
@@ -41,16 +47,9 @@ const SearchResults = createReactClass({
       />
     );
   }
-})
+});
 SearchResults.navigationOptions = {
   title: 'Results'
 };
-
-SearchResults.propTypes = {
-  onSearchPressed: PropTypes.func.isRequired,
-  search: PropTypes.shape({
-    result: PropTypes.object.isRequired
-  })
-}
 
 module.exports = SearchResults;

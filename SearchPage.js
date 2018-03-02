@@ -12,13 +12,22 @@ const createReactClass = require('create-react-class');
 const SearchBar = require('./Components').SearchBar;
 
 const SearchPage = createReactClass({
+  propTypes: {
+    modifySearchString: PropTypes.func.isRequired,
+    onSearchPressed: PropTypes.func.isRequired,
+    search: PropTypes.shape({
+      isLoading: PropTypes.bool.isRequired,
+      searchString: PropTypes.string,
+      message: PropTypes.string
+    })
+  },
 
   _onSearchTextChanged: function(event) {
     this.props.modifySearchString(event.nativeEvent.text);
   },
 
   _onSearchPressed: function() {
-    Keyboard.dismiss()
+    Keyboard.dismiss();
     this.props.onSearchPressed(this.props.search.searchString);
   },
 
@@ -38,15 +47,5 @@ const SearchPage = createReactClass({
 SearchPage.navigationOptions = {
   title: 'Property Finder'
 };
-
-SearchPage.propTypes = {
-  modifySearchString: PropTypes.func.isRequired,
-  onSearchPressed: PropTypes.func.isRequired,
-  search: PropTypes.shape({
-    isLoading: PropTypes.bool.isRequired,
-    searchString: PropTypes.string,
-    message: PropTypes.string
-  })
-}
 
 module.exports = SearchPage;

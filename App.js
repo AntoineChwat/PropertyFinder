@@ -4,6 +4,8 @@ const React = require('react');
 
 const createReactClass = require('create-react-class');
 
+const PropTypes = require('prop-types');
+
 const ReactNavigation = require ('react-navigation');
 const addNavigationHelpers = ReactNavigation.addNavigationHelpers;
 
@@ -13,22 +15,27 @@ const createReactNavigationReduxMiddleware = ReactNavigationReduxHelpers.createR
 
 const AppNavigator = require('./AppNavigator');
 
-const middleware = createReactNavigationReduxMiddleware(
- "root",
+createReactNavigationReduxMiddleware(
+ 'root',
  state => state.nav,
 );
-const addListener = createReduxBoundAddListener("root");
+const addListener = createReduxBoundAddListener('root');
 
 const App = createReactClass({
+  propTypes: {
+    dispatch: PropTypes.any,
+    nav: PropTypes.any
+  },
+
   render() {
     return (
       <AppNavigator navigation={addNavigationHelpers({
         dispatch: this.props.dispatch,
         state: this.props.nav,
-        addListener: addListener,
+        addListener: addListener
       })} />
     );
   }
-})
+});
 
 module.exports = App;

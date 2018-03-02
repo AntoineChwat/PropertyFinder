@@ -9,6 +9,11 @@ const createReactClass = require('create-react-class');
 const PropertyDetails = require('./Components').PropertyDetails;
 
 const PropertyView = createReactClass({
+  propTypes: {
+    search: PropTypes.shape({
+      item: PropTypes.object.isRequired
+    })
+  },
   render: function() {
     const params = this.props.search.item;
     return (
@@ -17,15 +22,9 @@ const PropertyView = createReactClass({
       />
     );
   }
-})
+});
 PropertyView.navigationOptions = {
   title: 'Property'
 };
-
-PropertyView.propTypes = {
-  search: PropTypes.shape({
-    item: PropTypes.object.isRequired
-  })
-}
 
 module.exports = PropertyView;
