@@ -7,7 +7,7 @@ const combineReducers = require('redux').combineReducers;
 const initialSearchState = {
   isLoading: false,
   result: {},
-  mesage: "",
+  mesage: '',
   searchString: "London",
   item: {}
 };

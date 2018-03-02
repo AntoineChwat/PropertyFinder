@@ -5,6 +5,8 @@ const React = require('react');
 const ReactNative = require('react-native');
 const Keyboard = ReactNative.Keyboard;
 
+const PropTypes = require('prop-types');
+
 const createReactClass = require('create-react-class');
 
 const SearchBar = require('./Components').SearchBar;
@@ -37,6 +39,14 @@ SearchPage.navigationOptions = {
   title: 'Property Finder'
 };
 
-//Declare PropTypes
+SearchPage.propTypes = {
+  modifySearchString: PropTypes.func.isRequired,
+  onSearchPressed: PropTypes.func.isRequired,
+  search: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+    searchString: PropTypes.string,
+    message: PropTypes.string
+  })
+}
 
 module.exports = SearchPage;
