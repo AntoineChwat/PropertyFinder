@@ -1,6 +1,14 @@
-<testsuites name="jest tests" tests="7" failures="0" time="1.219">
-  <testsuite name="searchReducer" errors="0" failures="0" skipped="0" timestamp="2018-03-02T15:10:41" time="0.881" tests="6">
-    <testcase classname="searchReducer should return initial state" name="searchReducer should return initial state" time="0.003">
+<testsuites name="jest tests" tests="9" failures="0" time="1.463">
+  <testsuite name="ListItem" errors="0" failures="0" skipped="0" timestamp="2018-03-05T11:07:16" time="1.371" tests="3">
+    <testcase classname="ListItem should render correctly" name="ListItem should render correctly" time="0.017">
+    </testcase>
+    <testcase classname="ListItem should be clickable" name="ListItem should be clickable" time="0.009">
+    </testcase>
+    <testcase classname="ListItem should handle an empty item" name="ListItem should handle an empty item" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="searchReducer" errors="0" failures="0" skipped="0" timestamp="2018-03-05T11:07:17" time="0.092" tests="6">
+    <testcase classname="searchReducer should return initial state" name="searchReducer should return initial state" time="0.001">
     </testcase>
     <testcase classname="searchReducer should handle START_LOADING" name="searchReducer should handle START_LOADING" time="0.001">
     </testcase>
@@ -11,10 +19,6 @@
     <testcase classname="searchReducer should handle RETURN_ERROR" name="searchReducer should handle RETURN_ERROR" time="0">
     </testcase>
     <testcase classname="searchReducer should handle RETURN_ITEM" name="searchReducer should handle RETURN_ITEM" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="ListItem" errors="0" failures="0" skipped="0" timestamp="2018-03-02T15:10:42" time="0.338" tests="1">
-    <testcase classname="ListItem should render correctly" name="ListItem should render correctly" time="0.021">
     </testcase>
   </testsuite>
 </testsuites>

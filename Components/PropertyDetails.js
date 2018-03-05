@@ -24,16 +24,17 @@ const PropertyDetails = createReactClass({
       url = 'https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png';
     }
     var price = params.price_formatted;
+    console.log(price);
     if (typeof price != 'string' || price =='') {
-      price = 'Unkown price';
+      price = 'Unknown price';
     }
     var title = params.title;
     if (typeof title != 'string' || title =='') {
-      title = 'Unkown title';
+      title = 'Unknown title';
     }
     var summary = params.summary;
     if (typeof summary != 'string' || summary =='') {
-      summary = 'Unkown summary';
+      summary = 'Unknown summary';
     }
     return (
       <View style = {{flex: 1}}>

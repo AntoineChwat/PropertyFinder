@@ -31,11 +31,11 @@ const ListItem = createReactClass({
     }
     var price = self.props.item.price_formatted;
     if (typeof price != 'string' || price =='') {
-      price = 'Unkown price';
+      price = 'Unknown price';
     }
     var title = self.props.item.title;
     if (typeof title != 'string' || title =='') {
-      title = 'Unkown title';
+      title = 'Unknown title';
     }
     return (
       <TouchableHighlight
