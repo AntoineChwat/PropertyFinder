@@ -14,11 +14,11 @@ const createReactClass = require('create-react-class');
 
 const PropertyDetails = createReactClass({
   propTypes: {
-    params: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired
   },
 
   render: function() {
-    const params = this.props.params;
+    const params = this.props.item;
     var url = params.img_url;
     if (typeof url != 'string' || url =='') {
       url = 'https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png';
@@ -60,6 +60,9 @@ const PropertyDetails = createReactClass({
     );
   }
 });
+PropertyDetails.navigationOptions = {
+  title: 'Property'
+};
 
 const styles = StyleSheet.create({
   picture: {

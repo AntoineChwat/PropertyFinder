@@ -3,11 +3,9 @@
 const React = require('react');
 
 const ReactNative = require('react-native');
+const Keyboard = ReactNative.Keyboard;
 const StyleSheet = ReactNative.StyleSheet;
 const Text = ReactNative.Text;
-const TextInput = ReactNative.TextInput;
-const View = ReactNative.View;
-const Button = ReactNative.Button;
 const ActivityIndicator = ReactNative.ActivityIndicator;
 const Image = ReactNative.Image;
 const ScrollView = ReactNative.ScrollView;
@@ -16,13 +14,24 @@ const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
-const SearchBar = createReactClass({
+const SearchBar = require('./SearchBar');
+
+const SearchPage = createReactClass({
   propTypes: {
-    _onSearchTextChanged: PropTypes.func.isRequired,
-    _onSearchPressed: PropTypes.func.isRequired,
+    modifySearchString: PropTypes.func.isRequired,
+    onSearchPressed: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     searchString: PropTypes.string,
     message: PropTypes.string
+  },
+
+  _onSearchTextChanged: function(event) {
+    this.props.modifySearchString(event.nativeEvent.text);
+  },
+
+  _onSearchPressed: function() {
+    Keyboard.dismiss();
+    this.props.onSearchPressed(this.props.searchString);
   },
 
   render: function() {
@@ -36,24 +45,13 @@ const SearchBar = createReactClass({
         <Text style={styles.description}>
           Search by place-name or postcode.
         </Text>
-        <View style={styles.flowRight}>
-          <TextInput
-            underlineColorAndroid={'transparent'}
-            style={styles.searchInput}
-            value={this.props.searchString}
-            onChange={this.props._onSearchTextChanged}
-            onSubmitEditing={this.props._onSearchPressed}
-            placeholder='Search via name or postcode'
-            returnKeyType="search"
-          />
-          <Button
-            onPress={this.props._onSearchPressed}
-            disabled={this.props.isLoading}
-            color='#48BBEC'
-            title='Go'
-          />
-        </View>
-        <Image source={require('../Resources/house.png')} style={styles.image}/>
+        <SearchBar
+          isLoading = {this.props.isLoading}
+          searchString = {this.props.searchString}
+          _onSearchTextChanged = {this._onSearchTextChanged}
+          _onSearchPressed = {this._onSearchPressed}
+        />
+        <Image source={require('../resources/house.png')} style={styles.image}/>
         {spinner}
         <Text style={styles.description}>
           {this.props.message}
@@ -62,6 +60,9 @@ const SearchBar = createReactClass({
     );
   }
 });
+SearchPage.navigationOptions = {
+  title: 'Property Finder'
+};
 
 const styles = StyleSheet.create({
   description: {
@@ -75,26 +76,10 @@ const styles = StyleSheet.create({
     marginTop: 65,
     alignItems: 'center'
   },
-  flowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch'
-  },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flexGrow: 1,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC'
-  },
   image: {
     width: 217,
     height: 138
   }
 });
 
-module.exports = SearchBar;
+module.exports = SearchPage;

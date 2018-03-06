@@ -1,6 +1,5 @@
-import 'react-native';
+const reducer = require('../src/Reducers/searchReducer');
 
-import reducer from '../Reducers/searchReducer';
 describe('searchReducer', () => {
   it('should return initial state', () => {
     const expectedReducer = {

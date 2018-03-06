@@ -13,7 +13,7 @@ const ReactNavigationReduxHelpers = require('react-navigation-redux-helpers');
 const createReduxBoundAddListener = ReactNavigationReduxHelpers.createReduxBoundAddListener;
 const createReactNavigationReduxMiddleware = ReactNavigationReduxHelpers.createReactNavigationReduxMiddleware;
 
-const AppNavigator = require('./AppNavigator');
+const AppNavigator = require('../utils/AppNavigator');
 
 createReactNavigationReduxMiddleware(
  'root',

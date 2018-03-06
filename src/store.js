@@ -1,7 +1,7 @@
 'use strict';
 
 const createStore = require('redux').createStore;
-const rootReducer = require('./Reducers/rootReducer');
+const rootReducer = require('./reducers/rootReducer');
 
 const store = createStore(rootReducer);
 

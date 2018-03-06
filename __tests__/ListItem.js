@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import ListItem from '../Components/ListItem';
+import ListItem from '../src/Components/ListItem';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -72,11 +72,10 @@ describe('ListItem', () => {
 	});
 	it('should handle an empty item', () => {
 		const item = {};
-		const onPressSpy = sinon.spy();
 		const wrapper = shallow(
 			<ListItem
 				item={item}
-				onPressItem={onPressSpy}
+				onPressItem={() => {}}
 			/>
 		);
 		const title = wrapper.find('Text').get(1).props.children;

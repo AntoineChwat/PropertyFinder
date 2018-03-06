@@ -9,7 +9,7 @@ const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
-const ListItem = require('./Components').ListItem;
+const ListItem = require('./ListItem');
 
 const SearchResults = createReactClass({
   propTypes: {
@@ -24,7 +24,6 @@ const SearchResults = createReactClass({
   },
 
   _renderItem: function({item, index}) {
-    console.log(item);
     const self = this;
     return (
       <ListItem

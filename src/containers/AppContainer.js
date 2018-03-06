@@ -8,9 +8,9 @@ const ReactRedux = require('react-redux');
 const Provider = ReactRedux.Provider;
 const connect = ReactRedux.connect;
 
-const store = require('./store');
+const store = require('../store');
 
-const App = require('./App');
+const App = require('../components/App');
 
 const mapStateToProps = (state) => ({
   nav: state.nav

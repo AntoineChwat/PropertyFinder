@@ -4,13 +4,13 @@ const connect = require('react-redux').connect;
 
 const NavigationActions = require('react-navigation').NavigationActions;
 
-const actions = require('./actions');
+const actions = require('../actions/actions');
 const startLoading = actions.startLoading;
 const returnResult = actions.returnResult;
 const updateSearchString = actions.updateSearchString;
 const returnError = actions.returnError;
 
-const SearchPage = require('./SearchPage');
+const SearchPage = require('../components/SearchPage');
 
 const urlForQueryAndPage = function(key, value, pageNumber) {
   const data = {
@@ -32,7 +32,7 @@ const urlForQueryAndPage = function(key, value, pageNumber) {
 
 const mapStateToProps = function(state) {
   return (
-    Object.assign({}, state, {
+    Object.assign({}, state.search, {
       result: Object.assign({}, state.result)
     })
   );

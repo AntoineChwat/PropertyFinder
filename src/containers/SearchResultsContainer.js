@@ -4,14 +4,15 @@ const connect = require('react-redux').connect;
 
 import { NavigationActions } from 'react-navigation';
 
-const actions = require('./actions');
+const actions = require('../actions/actions');
 const returnItem = actions.returnItem;
-const SearchResults = require('./SearchResults');
+const SearchResults = require('../components/SearchResults');
 
 const mapStateToProps = function(state) {
   return (
     Object.assign({}, state, {
-      result: Object.assign({}, state.result)
+      result: Object.assign({}, state.result),
+      item: Object.assign({}, state.item)
     })
   );
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const AppNavigator = require('../AppNavigator');
+const AppNavigator = require('../utils/AppNavigator');
 
 const router = AppNavigator.router;
 const mainNavAction = router.getActionForPathAndParams('Home');
