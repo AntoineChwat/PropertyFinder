@@ -2,33 +2,14 @@
 
 const connect = require('react-redux').connect;
 
-const NavigationActions = require('react-navigation').NavigationActions;
-
 const actions = require('../actions/actions');
 const startLoading = actions.startLoading;
 const returnResult = actions.returnResult;
 const updateSearchString = actions.updateSearchString;
 const returnError = actions.returnError;
+const getResult = actions.getResult;
 
 const SearchPage = require('../components/SearchPage');
-
-const urlForQueryAndPage = function(key, value, pageNumber) {
-  const data = {
-      country: 'uk',
-      pretty: '1',
-      encoding: 'json',
-      listing_type: 'buy',
-      action: 'search_listings',
-      page: pageNumber
-  };
-  data[key] = value;
-
-  const querystring = Object.keys(data)
-    .map(key => key + '=' + encodeURIComponent(data[key]))
-    .join('&');
-
-  return 'https://api.nestoria.co.uk/api?' + querystring;
-};
 
 const mapStateToProps = function(state) {
   return (
@@ -53,21 +34,7 @@ const mapDispatchToProps = function(dispatch) {
       dispatch(returnError('An error occured: ' + error));
     },
     onSearchPressed: function(searchString) {
-      const query = urlForQueryAndPage('place_name', searchString, 1);
-      this.startSearch();
-      fetch(query)
-        .then(response => response.json())
-        .then(json => {
-          if (json.response.application_response_code.substr(0, 1) !== '1') {
-            throw 'This location does not exist madafucka!';
-          } else {
-            this.sendResult(json.response);
-            dispatch(NavigationActions.navigate({ routeName: 'Results' }));
-          }
-        })
-        .catch(error => {
-          this.gotError(error);
-        });
+      dispatch(getResult(searchString));
     }
   };
 };
