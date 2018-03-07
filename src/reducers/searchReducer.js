@@ -1,3 +1,10 @@
+/**
+ * @fileoverview  This is the reducer linked to the search part of our application
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     searchReducer
+ */
 'use strict';
 
 const initialSearchState = {
@@ -8,6 +15,16 @@ const initialSearchState = {
   item: {}
 };
 
+/**
+ * The search reducer updates the state linked to a search based on the actions it receives
+ *
+ * @param    {Object} state  the search state
+ * @param    {Object} action a search action
+ *
+ * @returns  {Object} The updated search state
+ *
+ * @memberof searchReducer
+ */
 const searchReducer = function(state = initialSearchState, action) {
   switch (action.type) {
     case 'START_LOADING':

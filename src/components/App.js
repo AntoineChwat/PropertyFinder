@@ -1,3 +1,11 @@
+/**
+ * @fileoverview  This component renders the App Navigator
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     App
+ */
+
 'use strict';
 
 const React = require('react');
@@ -21,12 +29,25 @@ createReactNavigationReduxMiddleware(
 );
 const addListener = createReduxBoundAddListener('root');
 
+/**
+ * The application is rendered in this class
+ * @class
+ *
+ * @memberof App
+ */
 const App = createReactClass({
   propTypes: {
     dispatch: PropTypes.any,
     nav: PropTypes.any
   },
 
+  /**
+   * The render returns our app navigator's default view
+   *
+   * @returns {AppNavigator} The navigator which displays the app's pages
+   *
+   * @memberof App
+   */
   render() {
     return (
       <AppNavigator navigation={addNavigationHelpers({

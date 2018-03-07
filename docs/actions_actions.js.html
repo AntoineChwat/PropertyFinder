@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: actions/actions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: actions/actions.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview  This file contains all the actions and thunks of our app
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     actions
+ */
+
+const NavigationActions = require('react-navigation').NavigationActions;
+
+const urlForQueryAndPage = require('../utils/urlForQueryAndPage');
+
+/**
+ * Tells our application to start loading
+ *
+ * @returns {Object} action to start loading
+ *
+ * @memberof actions
+ */
+const startLoading = function() {
+  return {
+    type: 'START_LOADING'
+  };
+};
+
+/**
+ * Tells our application to update its result and to stop loading
+ *
+ * @param   {Object} result new result
+ *
+ * @returns {Object} action to update the result and stop loading
+ *
+ * @memberof actions
+ */
+const returnResult = function(result) {
+  return {
+    type: 'RETURN_RESULT',
+    result
+  };
+};
+
+/**
+ * Tells our application to update the search string
+ *
+ * @param   {string} searchString new search string
+ *
+ * @returns {Object} action to update the search string
+ *
+ * @memberof actions
+ */
+const updateSearchString = function(searchString) {
+  return {
+    type: 'UPDATE_SEARCH_STRING',
+    searchString
+  };
+};
+
+/**
+ * Tells our application to return an error message and to stop loading
+ *
+ * @param   {string} message error message to display
+ *
+ * @returns {Object} action to update the message and stop loading
+ *
+ * @memberof actions
+ */
+const returnError = function(message) {
+  return {
+    type: 'RETURN_ERROR',
+    message: message
+  };
+};
+
+/**
+ * Tells our application to update its item
+ *
+ * @param   {Object} item item to return
+ *
+ * @returns {Object} action to update the item
+ *
+ * @memberof actions
+ */
+const returnItem = function(item) {
+  return {
+    type: 'RETURN_ITEM',
+    item
+  };
+};
+
+/**
+ * Executes a fetch on the Nestor API
+ *
+ * @param   {string} searchString search term used to query the API
+ *
+ * @returns {Object} a dispatch to either get results and get to next page or return an error
+ *
+ * @memberof actions
+ */
+const getResult = function(searchString) {
+  return (dispatch) => {
+    dispatch(startLoading());
+    fetch(urlForQueryAndPage('place_name', searchString, 1))
+      .then(response => response.json())
+      .then(json => {
+        if (json.response.application_response_code.substr(0, 1) !== '1') {
+          throw 'This location does not exist madafucka!';
+        } else {
+          dispatch(returnResult(json.response));
+          dispatch(NavigationActions.navigate({ routeName: 'Results' }));
+        }
+      })
+      .catch(error => {
+        dispatch(returnError('An error occured: ' + error));
+      });
+  };
+};
+
+module.exports = {
+  startLoading,
+  returnResult,
+  updateSearchString,
+  returnError,
+  returnItem,
+  getResult
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.App.html">App</a></li><li><a href="AppContainer.AppContainer.html">AppContainer</a></li><li><a href="ListItem.ListItem.html">ListItem</a></li><li><a href="PropertyDetails.PropertyDetails.html">PropertyDetails</a></li><li><a href="SearchBar.SearchBar.html">SearchBar</a></li><li><a href="SearchPage.SearchPage.html">SearchPage</a></li><li><a href="SearchResults.SearchResults.html">SearchResults</a></li></ul><h3>Namespaces</h3><ul><li><a href="actions.html">actions</a></li><li><a href="App.html">App</a></li><li><a href="AppContainer.html">AppContainer</a></li><li><a href="AppNavigator.html">AppNavigator</a></li><li><a href="ListItem.html">ListItem</a></li><li><a href="navReducer.html">navReducer</a></li><li><a href="PropertyDetails.html">PropertyDetails</a></li><li><a href="PropertyDetailsContainer.html">PropertyDetailsContainer</a></li><li><a href="rootReducer.html">rootReducer</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="SearchPage.html">SearchPage</a></li><li><a href="SearchPageContainer.html">SearchPageContainer</a></li><li><a href="searchReducer.html">searchReducer</a></li><li><a href="SearchResults.html">SearchResults</a></li><li><a href="SearchResultsContainer.html">SearchResultsContainer</a></li><li><a href="urlForQueryAndPage.html">urlForQueryAndPage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Mar 07 2018 16:35:23 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

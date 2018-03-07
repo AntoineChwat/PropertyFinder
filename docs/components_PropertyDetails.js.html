@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/PropertyDetails.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/PropertyDetails.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview  This component renders the details of a property
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     PropertyDetails
+ */
+'use strict';
+
+const React = require('react');
+
+const ReactNative = require('react-native');
+const StyleSheet = ReactNative.StyleSheet;
+const Image = ReactNative.Image;
+const View = ReactNative.View;
+const Text = ReactNative.Text;
+
+const PropTypes = require('prop-types');
+
+const createReactClass = require('create-react-class');
+
+/**
+ * The details of the property are rendered in this class
+ * @class
+ *
+ * @memberof PropertyDetails
+ */
+const PropertyDetails = createReactClass({
+  propTypes: {
+    item: PropTypes.object.isRequired
+  },
+
+  /**
+   * The render checks that values are properly defined and displays the details
+   *
+   * @returns  {View} A view containing all necessary data
+   *
+   * @memberof PropertyDetails
+   */
+  render: function() {
+    const params = this.props.item;
+    var url = params.img_url;
+    if (typeof url != 'string' || url =='') {
+      url = 'https://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png';
+    }
+    var price = params.price_formatted;
+    console.log(price);
+    if (typeof price != 'string' || price =='') {
+      price = 'Unknown price';
+    }
+    var title = params.title;
+    if (typeof title != 'string' || title =='') {
+      title = 'Unknown title';
+    }
+    var summary = params.summary;
+    if (typeof summary != 'string' || summary =='') {
+      summary = 'Unknown summary';
+    }
+    return (
+      &lt;View style = {{flex: 1}}>
+        &lt;Image
+          style = {styles.picture}
+          resizeMode = "contain"
+          source={{ uri: url }}
+        />
+        &lt;View style = {styles.textContainer}>
+          &lt;View style = {styles.header}>
+            &lt;Text style = {styles.title} numberOfLines={1}>
+              {title}
+            &lt;/Text>
+            &lt;Text style = {styles.price}>
+              {price}
+            &lt;/Text>
+          &lt;/View>
+          &lt;Text style = {styles.description}>
+            {summary}
+          &lt;/Text>
+        &lt;/View>
+      &lt;/View>
+    );
+  }
+});
+PropertyDetails.navigationOptions = {
+  title: 'Property'
+};
+
+const styles = StyleSheet.create({
+  picture: {
+    flex: 1,
+    width: undefined,
+    height: undefined
+  },
+  textContainer: {
+    flex: 1
+  },
+  header: {
+    flex: 1,
+    backgroundColor: '#FFFFFF'
+  },
+  description: {
+    flex: 3,
+    top: 10
+  },
+  price: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#48BBEC',
+    top: 5
+  },
+  title: {
+    fontSize: 20,
+    color: '#656565',
+    top: 5
+  }
+});
+
+module.exports = PropertyDetails;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.App.html">App</a></li><li><a href="AppContainer.AppContainer.html">AppContainer</a></li><li><a href="ListItem.ListItem.html">ListItem</a></li><li><a href="PropertyDetails.PropertyDetails.html">PropertyDetails</a></li><li><a href="SearchBar.SearchBar.html">SearchBar</a></li><li><a href="SearchPage.SearchPage.html">SearchPage</a></li><li><a href="SearchResults.SearchResults.html">SearchResults</a></li></ul><h3>Namespaces</h3><ul><li><a href="actions.html">actions</a></li><li><a href="App.html">App</a></li><li><a href="AppContainer.html">AppContainer</a></li><li><a href="AppNavigator.html">AppNavigator</a></li><li><a href="ListItem.html">ListItem</a></li><li><a href="navReducer.html">navReducer</a></li><li><a href="PropertyDetails.html">PropertyDetails</a></li><li><a href="PropertyDetailsContainer.html">PropertyDetailsContainer</a></li><li><a href="rootReducer.html">rootReducer</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="SearchPage.html">SearchPage</a></li><li><a href="SearchPageContainer.html">SearchPageContainer</a></li><li><a href="searchReducer.html">searchReducer</a></li><li><a href="SearchResults.html">SearchResults</a></li><li><a href="SearchResultsContainer.html">SearchResultsContainer</a></li><li><a href="urlForQueryAndPage.html">urlForQueryAndPage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Mar 07 2018 16:35:23 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

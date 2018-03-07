@@ -1,3 +1,10 @@
+/**
+ * @fileoverview  This component renders the details of a property
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     PropertyDetails
+ */
 'use strict';
 
 const React = require('react');
@@ -12,11 +19,24 @@ const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
+/**
+ * The details of the property are rendered in this class
+ * @class
+ *
+ * @memberof PropertyDetails
+ */
 const PropertyDetails = createReactClass({
   propTypes: {
     item: PropTypes.object.isRequired
   },
 
+  /**
+   * The render checks that values are properly defined and displays the details
+   *
+   * @returns  {View} A view containing all necessary data
+   *
+   * @memberof PropertyDetails
+   */
   render: function() {
     const params = this.props.item;
     var url = params.img_url;

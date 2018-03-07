@@ -1,3 +1,10 @@
+/**
+ * @fileoverview  This component renders a search bar
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     SearchBar
+ */
 'use strict';
 
 const React = require('react');
@@ -12,6 +19,12 @@ const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
+/**
+ * The search bar is rendered in this class
+ * @class
+ *
+ * @memberof SearchBar
+ */
 const SearchBar = createReactClass({
   propTypes: {
     _onSearchTextChanged: PropTypes.func.isRequired,
@@ -20,6 +33,13 @@ const SearchBar = createReactClass({
     searchString: PropTypes.string
   },
 
+  /**
+   * The render displays a view containing the search bar and search button
+   *
+   * @returns  {View} A view containing the search bar and search button
+   *
+   * @memberof SearchBar
+   */
   render: function() {
     return (
       <View style={styles.flowRight}>

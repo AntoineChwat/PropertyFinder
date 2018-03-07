@@ -1,3 +1,10 @@
+/**
+ * @fileoverview  This component renders a search page
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     SearchPage
+ */
 'use strict';
 
 const React = require('react');
@@ -16,24 +23,49 @@ const createReactClass = require('create-react-class');
 
 const SearchBar = require('./SearchBar');
 
+/**
+ * The search page is rendered in this class
+ * @class
+ *
+ * @memberof SearchPage
+ */
 const SearchPage = createReactClass({
   propTypes: {
-    modifySearchString: PropTypes.func.isRequired,
-    onSearchPressed: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     searchString: PropTypes.string,
-    message: PropTypes.string
+    message: PropTypes.string,
+    modifySearchString: PropTypes.func.isRequired,
+    onSearchPressed: PropTypes.func.isRequired
   },
 
+  /**
+   * Calls a function from its container to handle text change
+   *
+   * @param    {Object} event The event registered when the search string is modified
+   *
+   * @memberof SearchPage
+   */
   _onSearchTextChanged: function(event) {
     this.props.modifySearchString(event.nativeEvent.text);
   },
 
+  /**
+   * Calls a function from its container to a handle search button press and to hide the keyboard
+   *
+   * @memberof SearchPage
+   */
   _onSearchPressed: function() {
     Keyboard.dismiss();
     this.props.onSearchPressed(this.props.searchString);
   },
 
+  /**
+   * The render displays a scroll view containing the whole search page
+   *
+   * @returns  {ScrollView} An unscrollable scroll view (to auto hide the keyboard when clicking anywhere on the view) containing the search page
+   *
+   * @memberof SearchPage
+   */
   render: function() {
     const spinner = this.props.isLoading ?
       <ActivityIndicator size='large'/> : null;

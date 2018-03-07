@@ -1,3 +1,10 @@
+/**
+ * @fileoverview  This component renders a list item
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     ListItem
+ */
 'use strict';
 
 const React = require('react');
@@ -13,6 +20,12 @@ const PropTypes = require('prop-types');
 
 const createReactClass = require('create-react-class');
 
+/**
+ * List item is rendered in this class
+ * @class
+ *
+ * @memberof ListItem
+ */
 const ListItem = createReactClass({
   propTypes: {
     onPressItem: PropTypes.func.isRequired,
@@ -20,9 +33,21 @@ const ListItem = createReactClass({
     item: PropTypes.object.isRequired
   },
 
+  /**
+   * Calls its parent function from its props to handle press
+   *
+   * @memberof ListItem
+   */
   _onPress: function() {
     this.props.onPressItem(this.props.index, this.props.item);
   },
+  /**
+   * The render checks that values are properly defined and displays a list item
+   *
+   * @returns  {TouchableHighlight} A touchable list element containing all necessary data
+   *
+   * @memberof ListItem
+   */
   render: function() {
     const self = this;
     var url = self.props.item.img_url;

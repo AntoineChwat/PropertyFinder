@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/SearchPage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/SearchPage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview  This component renders a search page
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     SearchPage
+ */
+'use strict';
+
+const React = require('react');
+
+const ReactNative = require('react-native');
+const Keyboard = ReactNative.Keyboard;
+const StyleSheet = ReactNative.StyleSheet;
+const Text = ReactNative.Text;
+const ActivityIndicator = ReactNative.ActivityIndicator;
+const Image = ReactNative.Image;
+const ScrollView = ReactNative.ScrollView;
+
+const PropTypes = require('prop-types');
+
+const createReactClass = require('create-react-class');
+
+const SearchBar = require('./SearchBar');
+
+/**
+ * The search page is rendered in this class
+ * @class
+ *
+ * @memberof SearchPage
+ */
+const SearchPage = createReactClass({
+  propTypes: {
+    isLoading: PropTypes.bool.isRequired,
+    searchString: PropTypes.string,
+    message: PropTypes.string,
+    modifySearchString: PropTypes.func.isRequired,
+    onSearchPressed: PropTypes.func.isRequired
+  },
+
+  /**
+   * Calls a function from its container to handle text change
+   *
+   * @param    {Object} event The event registered when the search string is modified
+   *
+   * @memberof SearchPage
+   */
+  _onSearchTextChanged: function(event) {
+    this.props.modifySearchString(event.nativeEvent.text);
+  },
+
+  /**
+   * Calls a function from its container to a handle search button press and to hide the keyboard
+   *
+   * @memberof SearchPage
+   */
+  _onSearchPressed: function() {
+    Keyboard.dismiss();
+    this.props.onSearchPressed(this.props.searchString);
+  },
+
+  /**
+   * The render displays a scroll view containing the whole search page
+   *
+   * @returns  {ScrollView} An unscrollable scroll view (to auto hide the keyboard when clicking anywhere on the view) containing the search page
+   *
+   * @memberof SearchPage
+   */
+  render: function() {
+    const spinner = this.props.isLoading ?
+      &lt;ActivityIndicator size='large'/> : null;
+    return (
+      &lt;ScrollView scrollEnabled={false} contentContainerStyle={styles.container}>
+        &lt;Text style={styles.description}>
+          Search for houses to buy!
+        &lt;/Text>
+        &lt;Text style={styles.description}>
+          Search by place-name or postcode.
+        &lt;/Text>
+        &lt;SearchBar
+          isLoading = {this.props.isLoading}
+          searchString = {this.props.searchString}
+          _onSearchTextChanged = {this._onSearchTextChanged}
+          _onSearchPressed = {this._onSearchPressed}
+        />
+        &lt;Image source={require('../resources/house.png')} style={styles.image}/>
+        {spinner}
+        &lt;Text style={styles.description}>
+          {this.props.message}
+        &lt;/Text>
+      &lt;/ScrollView>
+    );
+  }
+});
+SearchPage.navigationOptions = {
+  title: 'Property Finder'
+};
+
+const styles = StyleSheet.create({
+  description: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#656565'
+  },
+  container: {
+    padding: 30,
+    marginTop: 65,
+    alignItems: 'center'
+  },
+  image: {
+    width: 217,
+    height: 138
+  }
+});
+
+module.exports = SearchPage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.App.html">App</a></li><li><a href="AppContainer.AppContainer.html">AppContainer</a></li><li><a href="ListItem.ListItem.html">ListItem</a></li><li><a href="PropertyDetails.PropertyDetails.html">PropertyDetails</a></li><li><a href="SearchBar.SearchBar.html">SearchBar</a></li><li><a href="SearchPage.SearchPage.html">SearchPage</a></li><li><a href="SearchResults.SearchResults.html">SearchResults</a></li></ul><h3>Namespaces</h3><ul><li><a href="actions.html">actions</a></li><li><a href="App.html">App</a></li><li><a href="AppContainer.html">AppContainer</a></li><li><a href="AppNavigator.html">AppNavigator</a></li><li><a href="ListItem.html">ListItem</a></li><li><a href="navReducer.html">navReducer</a></li><li><a href="PropertyDetails.html">PropertyDetails</a></li><li><a href="PropertyDetailsContainer.html">PropertyDetailsContainer</a></li><li><a href="rootReducer.html">rootReducer</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="SearchPage.html">SearchPage</a></li><li><a href="SearchPageContainer.html">SearchPageContainer</a></li><li><a href="searchReducer.html">searchReducer</a></li><li><a href="SearchResults.html">SearchResults</a></li><li><a href="SearchResultsContainer.html">SearchResultsContainer</a></li><li><a href="urlForQueryAndPage.html">urlForQueryAndPage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Mar 07 2018 16:35:23 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

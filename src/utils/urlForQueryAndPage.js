@@ -1,5 +1,24 @@
+/**
+ * @fileoverview  Function used to create urls based on a search term
+ *
+ * @author        Antoine Chwat
+ *
+ * @namespace     urlForQueryAndPage
+ */
 'use strict';
 
+
+/**
+ * Create the function
+ *
+ * @param    {string} key        type of parameter
+ * @param    {string} value      value of parameter
+ * @param    {number} pageNumber number of the page we want to display
+ *
+ * @returns  {string}            A fully formed url
+ *
+ * @memberof urlForQueryAndPage
+ */
 const urlForQueryAndPage = function(key, value, pageNumber) {
   const data = {
       country: 'uk',
